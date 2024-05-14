@@ -1,6 +1,13 @@
 <script setup>
 import NavMenuItem from './NavMenuItem.vue'
 import NavMenuInput from './NavMenuInput.vue'
+import { openapi } from '../state/openapi.js'
+
+async function loadSpec(url) {
+  const response = await fetch(url)
+  const spec = await response.json()
+  openapi.loadSpec(spec)
+}
 </script>
 
 <template>
@@ -12,7 +19,11 @@ import NavMenuInput from './NavMenuInput.vue'
       <ul
         class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100"
       >
-        <NavMenuInput buttonIcon="bi-bar-chart-steps" placeholder="Spec Location" />
+        <NavMenuInput
+          buttonIcon="bi-bar-chart-steps"
+          placeholder="Spec Location"
+          @submit="loadSpec"
+        />
       </ul>
       <hr />
     </div>
