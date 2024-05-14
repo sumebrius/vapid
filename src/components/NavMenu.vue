@@ -9,7 +9,9 @@ import NavMenuInput from './NavMenuInput.vue'
       <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-decoration-none">
         <span class="fs-5 d-none d-sm-inline">Vapid</span>
       </a>
-      <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start">
+      <ul
+        class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100"
+      >
         <NavMenuInput buttonIcon="bi-bar-chart-steps" placeholder="Spec Location" />
       </ul>
       <hr />
