@@ -3,6 +3,12 @@ import NavMenuLink from './NavMenuLink.vue'
 import NavMenuInput from './NavMenuInput.vue'
 import { openapi } from '../state/openapi.js'
 
+const activePage = defineModel()
+
+function selectLink(page) {
+  activePage.value = page
+}
+
 async function loadSpec(url) {
   const response = await fetch(url)
   const spec = await response.json()
@@ -24,6 +30,7 @@ async function loadSpec(url) {
           placeholder="Spec Location"
           @submit="loadSpec"
         />
+        <NavMenuLink icon="bi-house" title="Spec Dump" @click="selectLink('SpecDump')" />
       </ul>
       <hr />
     </div>
