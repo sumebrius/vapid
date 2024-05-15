@@ -8,8 +8,10 @@ import { openapi } from './state/openapi.js'
     <div class="row flex-nowrap">
       <NavMenu />
       <div class="col py-3">
-        <div>
-          {{ openapi }}
+        <div class="p-4">
+          <h1 class="mb-4">
+            {{ openapi.title }}
+          </h1>
         </div>
       </div>
     </div>
