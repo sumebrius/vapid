@@ -1,14 +1,12 @@
 <script setup>
-import { ref } from 'vue'
-
 defineProps(['buttonIcon', 'placeholder'])
 const emit = defineEmits(['submit'])
 
-const input = ref(null)
+let value
 
 function submit() {
-  if (input.value) {
-    emit('submit', input.value.value)
+  if (value) {
+    emit('submit', value)
   }
 }
 </script>
@@ -18,6 +16,6 @@ function submit() {
     <button class="btn btn-outline-primary me-2" type="button" @click="submit">
       <i :class="buttonIcon"></i>
     </button>
-    <input type="text" class="form-control" :placeholder ref="input" />
+    <input type="text" class="form-control" :placeholder v-model="value" />
   </form>
 </template>
