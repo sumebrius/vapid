@@ -1,5 +1,5 @@
 <script setup>
-import NavMenuItem from './NavMenuItem.vue'
+import NavMenuLink from './NavMenuLink.vue'
 import NavMenuInput from './NavMenuInput.vue'
 import { openapi } from '../state/openapi.js'
 
