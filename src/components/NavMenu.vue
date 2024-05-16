@@ -10,9 +10,7 @@ function selectLink(page) {
 }
 
 async function loadSpec(url) {
-  const response = await fetch(url)
-  const spec = await response.json()
-  openapi.loadSpec(spec)
+  openapi.loadSpec(url)
 }
 </script>
 

@@ -1,4 +1,5 @@
 import { reactive } from 'vue'
+import OpenAPIParser from '@readme/openapi-parser'
 import { Parser, HtmlRenderer } from 'commonmark'
 
 const mdReader = new Parser()
@@ -6,15 +7,16 @@ const mdWriter = new HtmlRenderer()
 
 export const openapi = reactive({
   loaded: false,
-  spec: {},
+  schema: {},
   title: 'No spec loaded...',
   description: '',
 
-  loadSpec(spec) {
-    this.spec = spec
-    this.title = this.spec.info.title
+  async loadSpec(spec) {
+    this.schema = await OpenAPIParser.validate(spec)
+
+    this.title = this.schema.info.title
     this.loaded = true
-    this.description = mdToHtml(this.spec.info.description)
+    this.description = mdToHtml(this.schema.info.description)
   }
 })
 
