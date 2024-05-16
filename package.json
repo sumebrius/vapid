@@ -13,6 +13,7 @@
   "dependencies": {
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
+    "commonmark": "^0.31.0",
     "vue": "^3.4.21"
   },
   "devDependencies": {
