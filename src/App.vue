@@ -1,7 +1,10 @@
 <script setup>
 import NavMenu from './components/NavMenu.vue'
+
+import ApiOperations from './pages/ApiOperations.vue'
 import SpecDump from './pages/SpecDump.vue'
 import SpecInfo from './pages/SpecInfo.vue'
+
 import { openapi } from './state/openapi.js'
 import { ref } from 'vue'
 
@@ -9,7 +12,8 @@ const activePage = ref('SpecInfo')
 
 const pages = {
   SpecDump,
-  SpecInfo
+  SpecInfo,
+  ApiOperations
 }
 </script>
 

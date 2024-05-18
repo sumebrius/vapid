@@ -33,6 +33,11 @@ async function loadSpec(url) {
           title="API Information"
           @click="selectLink('SpecInfo')"
         />
+        <NavMenuLink
+          icon="bi-braces-asterisk"
+          title="Operations"
+          @click="selectLink('ApiOperations')"
+        />
         <NavMenuLink icon="bi-house" title="Spec Dump" @click="selectLink('SpecDump')" />
       </ul>
       <hr />
