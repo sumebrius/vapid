@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+import { strToId } from '@/util'
 import OperationTab from './OperationTab.vue'
 
 const props = defineProps(['path', 'operations'])
@@ -20,7 +21,7 @@ const tabColour = {
 </script>
 
 <template>
-  <div class="card mb-4">
+  <div class="card mb-4" :id="strToId(path)">
     <div class="card-header">
       <h3 class="card-title font-monospace mt-2">{{ path }}</h3>
     </div>
@@ -32,6 +33,7 @@ const tabColour = {
             :key="operation"
             class="nav-link text-uppercase"
             :class="[{ active: currentTab === operation }, tabColour[operation]]"
+            role="button"
             @click.stop="currentTab = operation"
           >
             {{ operation }}
