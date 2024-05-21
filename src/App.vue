@@ -1,20 +1,11 @@
 <script setup>
 import NavMenu from './components/NavMenu.vue'
-
-import ApiOperations from './pages/ApiOperations.vue'
-import SpecDump from './pages/SpecDump.vue'
 import SpecInfo from './pages/SpecInfo.vue'
 
 import { openapi } from './state/openapi.js'
-import { ref } from 'vue'
+import { shallowRef } from 'vue'
 
-const activePage = ref('SpecInfo')
-
-const pages = {
-  SpecDump,
-  SpecInfo,
-  ApiOperations
-}
+const activePage = shallowRef(SpecInfo)
 </script>
 
 <template>
@@ -26,7 +17,7 @@ const pages = {
           <h1 class="mb-4">
             {{ openapi.title }}
           </h1>
-          <component :is="pages[activePage]" />
+          <component :is="activePage" />
         </div>
       </div>
     </div>

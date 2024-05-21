@@ -2,6 +2,11 @@
 import NavMenuLink from './NavMenuLink.vue'
 import NavMenuInput from './NavMenuInput.vue'
 import NavSubMenu from './NavSubMenu.vue'
+
+import ApiOperations from '@/pages/ApiOperations.vue'
+import SpecDump from '@/pages/SpecDump.vue'
+import SpecInfo from '@/pages/SpecInfo.vue'
+
 import { openapi } from '../state/openapi.js'
 
 const activePage = defineModel()
@@ -33,19 +38,19 @@ async function loadSpec(url) {
           <NavMenuLink
             icon="bi-info-square"
             title="API Information"
-            @click="selectLink('SpecInfo')"
+            @click="selectLink(SpecInfo)"
           />
           <NavMenuLink
             icon="bi-braces-asterisk"
-            title="Operations"
-            @click="selectLink('ApiOperations')"
+            title="Operations by path"
+            @click="selectLink(ApiOperations)"
           >
             <NavSubMenu
               :children="Object.keys(openapi.schema.paths)"
-              v-show="activePage === 'ApiOperations'"
+              v-show="activePage === ApiOperations"
             />
           </NavMenuLink>
-          <NavMenuLink icon="bi-house" title="Spec Dump" @click="selectLink('SpecDump')" />
+          <NavMenuLink icon="bi-house" title="Spec Dump" @click="selectLink(SpecDump)" />
         </template>
       </ul>
       <hr />
