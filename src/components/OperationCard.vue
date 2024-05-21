@@ -40,7 +40,7 @@ const tabColour = {
           </a>
         </nav>
         <div class="tab-content">
-          <OperationTab v-bind:spec="operations[currentTab]" />
+          <OperationTab :spec="operations[currentTab]" />
         </div>
       </div>
     </div>
