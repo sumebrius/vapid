@@ -8,13 +8,20 @@ import SpecDump from '@/pages/SpecDump.vue'
 import SpecInfo from '@/pages/SpecInfo.vue'
 
 import { openapi } from '../state/openapi.js'
+import { ref } from 'vue'
 
 const activePage = defineModel('activePage')
 const activePageProps = defineModel('activePageProps')
 
+const expandOpsByTag = ref(false)
+
 function selectLink(page, props = {}) {
   activePage.value = page
   activePageProps.value = props
+}
+
+function expandOpsByPath() {
+  return activePage.value === ApiOperations && Reflect.ownKeys(activePageProps.value).length === 0
 }
 
 async function loadSpec(url) {
@@ -47,9 +54,17 @@ async function loadSpec(url) {
             title="Operations by path"
             @click="selectLink(ApiOperations)"
           >
+            <NavSubMenu :children="Object.keys(openapi.schema.paths)" v-show="expandOpsByPath()" />
+          </NavMenuLink>
+          <NavMenuLink
+            icon="bi-tags"
+            title="Operations by Tag"
+            @click="expandOpsByTag = !expandOpsByTag"
+          >
             <NavSubMenu
-              :children="Object.keys(openapi.schema.paths)"
-              v-show="activePage === ApiOperations"
+              :children="openapi.schema.tags.map((tag) => tag.name)"
+              :callback="(tag) => selectLink(ApiOperations, { tag: tag })"
+              v-show="expandOpsByTag"
             />
           </NavMenuLink>
           <NavMenuLink icon="bi-house" title="Spec Dump" @click="selectLink(SpecDump)" />

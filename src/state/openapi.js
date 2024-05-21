@@ -10,13 +10,31 @@ export const openapi = reactive({
   schema: {},
   title: 'No spec loaded...',
   description: '',
+  tags: {},
 
   async loadSpec(spec) {
     this.schema = await OpenAPIParser.validate(spec)
 
     this.title = this.schema.info.title
-    this.loaded = true
     this.description = mdToHtml(this.schema.info.description)
+
+    this.schema.tags.forEach((tagSpec) => {
+      this.tags[tagSpec.name] = {
+        description: mdToHtml(tagSpec.description),
+        paths: {}
+      }
+    })
+
+    Object.entries(this.schema.paths).forEach((entry) => {
+      const [path, operations] = entry
+      Object.entries(operations).forEach((operation) => {
+        operation[1].tags.forEach((tag) => {
+          this.tags[tag].paths[path] = operations
+        })
+      })
+    })
+
+    this.loaded = true
   }
 })
 
