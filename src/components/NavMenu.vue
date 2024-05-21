@@ -9,10 +9,12 @@ import SpecInfo from '@/pages/SpecInfo.vue'
 
 import { openapi } from '../state/openapi.js'
 
-const activePage = defineModel()
+const activePage = defineModel('activePage')
+const activePageProps = defineModel('activePageProps')
 
-function selectLink(page) {
+function selectLink(page, props = {}) {
   activePage.value = page
+  activePageProps.value = props
 }
 
 async function loadSpec(url) {
