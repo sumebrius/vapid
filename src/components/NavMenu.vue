@@ -29,22 +29,24 @@ async function loadSpec(url) {
           placeholder="Spec Location"
           @submit="loadSpec"
         />
-        <NavMenuLink
-          icon="bi-info-square"
-          title="API Information"
-          @click="selectLink('SpecInfo')"
-        />
-        <NavMenuLink
-          icon="bi-braces-asterisk"
-          title="Operations"
-          @click="selectLink('ApiOperations')"
-        >
-          <NavSubMenu
-            :children="Object.keys(openapi.schema.paths)"
-            v-show="activePage === 'ApiOperations'"
+        <template v-if="openapi.loaded">
+          <NavMenuLink
+            icon="bi-info-square"
+            title="API Information"
+            @click="selectLink('SpecInfo')"
           />
-        </NavMenuLink>
-        <NavMenuLink icon="bi-house" title="Spec Dump" @click="selectLink('SpecDump')" />
+          <NavMenuLink
+            icon="bi-braces-asterisk"
+            title="Operations"
+            @click="selectLink('ApiOperations')"
+          >
+            <NavSubMenu
+              :children="Object.keys(openapi.schema.paths)"
+              v-show="activePage === 'ApiOperations'"
+            />
+          </NavMenuLink>
+          <NavMenuLink icon="bi-house" title="Spec Dump" @click="selectLink('SpecDump')" />
+        </template>
       </ul>
       <hr />
     </div>
